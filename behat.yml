@@ -1,0 +1,180 @@
+#Below are the Behat.yml file without using profiling and other suites
+#https://axelerant.slack.com/archives/D03BK3UGALV/p1668414676835399?thread_ts=1668414523.532899&cid=D03BK3UGALV
+
+#default:
+#  suites:
+#    default:
+#      contexts:
+#        - FeatureContext
+#        - Drupal\DrupalExtension\Context\DrupalContext
+#        # - Drupal\DrupalExtension\Context\MinkContext
+#        - Drupal\DrupalExtension\Context\MessageContext
+#        - Drupal\DrupalExtension\Context\DrushContext
+#        - PageFactorySearchContext
+#  extensions:
+#    Drupal\MinkExtension:
+#      #goutte: ~
+#      selenium2:
+#        browser: chrome
+#        wd_host: http://127.0.0.1:4444/wd/hub
+#        capabilities:
+#          extra_capabilities:
+#            chrome:
+#            chromeOptions:
+#              #args:
+#                #- "--start-fullscreen"
+#              w3c: false
+#      browser_name: chrome
+#      default_session: selenium2
+#      base_url: https://my-d9umami-site.ddev.site
+#    SensioLabs\Behat\PageObjectExtension: ~
+##    Behat\MinkExtension\Extension:
+##      files_path: '%behat.paths.base%/asset/Pic/
+#    # base_url: https://www.programsbuzz.com
+#    Drupal\DrupalExtension:
+#      blackbox: ~
+#      region_map:
+#        footer1: ".region-content-bottom"
+#        footer2: ".footer"
+#        footer3: ".layout-bottom"
+#        header: ".layout-header"
+#        drupal_header: "#toolbar-bar"
+#      selectors:
+#        success_message_selector: 'div.messages__content'
+#        #'span.messages__item'
+#        error_message_selector: "document.querySelector('#edit-subject-0-value').validationMessage"
+#      api_driver: 'drupal'
+#      drupal:
+#        drupal_root: '/Users/amitj/Desktop/Learning/8_Behat/my-d9umami-site/web'
+#      drush:
+#        alias: '@self'
+#        root: '/Users/amitj/Desktop/Learning/8_Behat/my-d9umami-site/web'
+
+#Below behat.yml by using profiling and different suites:
+#https://axelerant.slack.com/archives/D03BK3UGALV/p1668415161891809?thread_ts=1668414523.532899&cid=D03BK3UGALV
+
+default:
+  suites:
+    default:
+      paths:
+        features: features
+        bootstrap: 'features/bootstrap'
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        # - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+        - PageFactorySearchContext
+
+    searchFeature:
+      paths:
+        - '%paths.base%/features/Assignment_B/7_PO_testSearch.feature'
+      #  - 'features/bootstrap'
+      contexts:
+        - FeatureContext
+        - PageFactorySearchContext
+
+    articleFeature:
+      paths:
+        - '%paths.base%/features/Assignment_B/8_PO_testArticleListingPage.feature'
+      contexts:
+        - FeatureContext
+        - PageFactorySearchContext
+#      filters:  #Local Filter
+#        tags: "@test2"  # we can use this filter tag to specificaly run scenaios tagged with the tag we mentioned here
+#      formatters:  #We can remove this formatters expression as default formattes name is pretty only
+#        pretty: true
+
+  extensions:
+    Drupal\MinkExtension:
+      #goutte: ~
+      selenium2:
+        browser: chrome
+        wd_host: http://127.0.0.1:4444/wd/hub
+        capabilities:
+          extra_capabilities:
+            chrome:
+            chromeOptions:
+              #args:
+                #- "--start-fullscreen"
+              w3c: false
+      browser_name: chrome
+      default_session: selenium2
+      #base_url: https://my-d9umami-site.ddev.site  # If we comment this base url here in default suite then to run any feature file
+      # we need to use '--profile local' or '--profile remote' as we mentioned base url on that profile
+      # So either uncomment this or run any feature with profiling as "amitj@Amits-MacBook-Air Behat_Assignment % bin/behat features/Assignment_A/1_testContactForm.feature --profile local"
+    SensioLabs\Behat\PageObjectExtension: ~
+#    Behat\MinkExtension\Extension:
+#      files_path: '%behat.paths.base%/asset/Pic/
+    # base_url: https://www.programsbuzz.com
+    Drupal\DrupalExtension:
+      blackbox: ~
+      region_map:
+        footer1: ".region-content-bottom"
+        footer2: ".footer"
+        footer3: ".layout-bottom"
+        header: ".layout-header"
+        drupal_header: "#toolbar-bar"
+      selectors:
+        success_message_selector: 'div.messages__content'
+        #'span.messages__item'
+        error_message_selector: "document.querySelector('#edit-subject-0-value').validationMessage"
+      api_driver: 'drupal'
+      drupal:
+        drupal_root: '/Users/amitj/Desktop/Learning/8_Behat/my-d9umami-site/web'
+      drush:
+        alias: '@self'
+        root: '/Users/amitj/Desktop/Learning/8_Behat/my-d9umami-site/web'
+
+local:
+  extensions:
+    Drupal\MinkExtension:
+    # goutte: ~
+#      selenium2:
+#        browser: chrome
+#        wd_host: http://127.0.0.1:4444/wd/hub
+#        capabilities:
+#          extra_capabilities:
+#            chromeOptions:
+#              args:
+#                - "--start-fullscreen"
+#              w3c: false
+#      browser_name: chrome
+#      default_session: selenium2
+      base_url: https://my-d9umami-site.ddev.site/
+#    Drupal\DrupalExtension:
+#      blackbox: ~
+#      api_driver: "drupal"
+#      drupal:
+#        drupal_root: '/Users/amitj/Desktop/Learning/8_Behat/my-d9umami-site/web'
+#      drush:
+#          alias: '@self'
+#          root: '/Users/amitj/Desktop/Learning/8_Behat/my-d9umami-site/web'
+#    SensioLabs\Behat\PageObjectExtension: ~
+
+remote:
+  extensions:
+    Drupal\MinkExtension:
+      goutte: ~
+      selenium2:
+        browser: chrome
+        wd_host: http://127.0.0.1:4444/wd/hub
+        capabilities:
+          extra_capabilities:
+            chromeOptions:
+              args:
+                - "--start-fullscreen"
+              w3c: false
+      browser_name: chrome
+      default_session: selenium2
+      base_url: https://test-umami-test.pantheonsite.io/
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: "drush"
+      drupal:
+        drupal_root: "/Users/amitj/Desktop/Learning/8_Behat/my-d9umami-site/web" # provide path to remote site root
+      drush:
+        alias: '@remote'
+        root: '/Users/amitj/Desktop/Learning/8_Behat/my-d9umami-site/web'
+    SensioLabs\Behat\PageObjectExtension: ~

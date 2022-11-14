@@ -1,0 +1,22 @@
+{
+  "require": {
+    "drupal/drupal-extension": "~4.0",
+    "symfony/yaml": "^4.4",
+    "symfony/event-dispatcher": "^4.4",
+    "symfony/console": "^4.4",
+    "symfony/http-kernel": "^4"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  },
+  "require-dev": {
+    "drush/drush": "^11.2",
+    "drush-ops/behat-drush-endpoint": "^9",
+    "sensiolabs/behat-page-object-extension": "^2.0"
+  },
+
+  "extra": {
+    "symfony-app-dir": "app",
+    "symfony-bin-dir": "bin",
+    "symfony-var-dir": "var"}
+}
